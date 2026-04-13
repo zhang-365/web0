@@ -1,0 +1,22 @@
+/* 所有页面统一样式 */
+
+
+.page-toolbar {
+  margin-bottom: 16px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.page-search {
+  width: 200px;
+}
+
+.page-btn {
+  flex-shrink: 0;
+}
+
+.page-table {
+  background: #fff;
+}

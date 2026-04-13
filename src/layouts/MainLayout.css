@@ -1,0 +1,107 @@
+/* 整体布局 */
+.main-layout {
+  min-height: 100vh;
+}
+
+/* 左侧侧边栏 */
+.layout-sider {
+  overflow: auto;
+}
+
+/* Logo 区域 */
+.logo-box {
+  padding: 16px;
+  text-align: center;
+}
+
+.logo-text {
+  color: #fff !important;
+  margin: 0;
+}
+
+
+
+
+/* 右侧头部 */
+.layout-header {
+   position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  height: 64px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+/* 内容区域包裹层 */
+.layout-content-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 页面内容区域 */
+.layout-content {
+  margin: 5px;
+  background-color: #fff;
+  min-height: calc(100vh - 64px);
+}
+
+
+/* 头部右侧区域 */
+.layout-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 24px;
+  background: #001529;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+/* 核心：强化按钮的hover和点击反馈 */
+.user-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 64px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.user-btn:hover {
+  background: rgba(255, 255, 255, 0.15); /* 明显的高亮背景 */
+  color: #fff;
+ /* box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);  外发光效果，更显眼 */
+}
+
+.user-btn:active {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(0.98); /* 轻微按压效果 */
+}
+
+.user-icon {
+  font-size: 16px;
+}
+
+.user-name {
+  color: inherit;
+  font-size: 15px;
+}
+
+/* 下拉菜单样式保持精致 */
+.user-dropdown {
+  min-width: 140px;
+  border-radius: 8px;
+  /* box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); */
+}

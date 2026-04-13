@@ -1,0 +1,15 @@
+/* 页面居中容器 */
+.login-wrap {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  background: #f0f2f5;
+}
+
+/* 侧边栏Logo样式 */
+.layout-logo {
+  color: #fff;
+  text-align: center;
+  line-height: 60px;
+  font-size: 16px;
+}

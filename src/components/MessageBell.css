@@ -1,0 +1,22 @@
+.lable {
+  padding: '8px 12px';
+}
+
+.lable_Isread {
+  font-weight: 'normal';
+}
+
+.lable_IsNOread {
+  font-weight: 'bold';
+}
+
+.lablediv {
+  text-align: 'center';
+  padding: '8px';
+}
+
+.xiaoxi {
+  display: 'flex';
+  justify-content: 'space-between';
+  padding: '8px 12px';
+}

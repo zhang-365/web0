@@ -1,0 +1,9 @@
+.icon-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-item {
+  font-size: 16px;
+}
