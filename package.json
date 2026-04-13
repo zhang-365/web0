@@ -1,5 +1,6 @@
 {
-  "name": "admin-web",
+  "homepage": "https://zhang-365.github.io/web0/",
+  "name": "web0",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -26,6 +27,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -51,6 +54,7 @@
   },
   "proxy": "http://localhost:5278",
   "devDependencies": {
+    "gh-pages": "^6.3.0",
     "less": "^4.6.4",
     "less-loader": "^12.3.2"
   }
