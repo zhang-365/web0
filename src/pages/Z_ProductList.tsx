@@ -6,28 +6,36 @@ import {
   message,
   Popconfirm,
   Image,
-  Select, Empty,
-  Input, Card
+  Select,
+  Empty,
+  Input,
+  Card
 } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
-import ProductFormModal, { ProductItem } from './Z_ProductFormModal';
+import { useNavigate } from 'react-router-dom';
 import {
   getProductList,
   deleteProduct,
 } from '../api/productApi';
 
+export interface ProductItem {
+  id?: number;
+  productname?: string;
+  price?: number;
+  stock?: number;
+  category?: string;
+  imgUrl?: string;
+  status?: boolean;
+  description?: string;
+}
+
 const ProductList = () => {
+  const navigate = useNavigate();
   const [list, setList] = useState<ProductItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [total, setTotal] = useState(0);
   const [pageNum, setPageNum] = useState(1);
   const [pageSize] = useState(10);
-
-  // 弹窗
-  const [modalVisible, setModalVisible] = useState(false);
-  const [currentRecord, setCurrentRecord] = useState<ProductItem>();
-
-  // 搜索
   const [productName, setName] = useState('');
   const [category, setCategory] = useState('');
 
@@ -39,7 +47,6 @@ const ProductList = () => {
     { label: '其他', value: 'other' },
   ];
 
-  // 获取列表
   const getList = async () => {
     setLoading(true);
     try {
@@ -49,7 +56,6 @@ const ProductList = () => {
         productName,
         category,
       });
-      console.log(res)
       setList(res.data.data || []);
       setTotal(res.data.total || 0);
     } catch {
@@ -59,7 +65,6 @@ const ProductList = () => {
     }
   };
 
-  // 删除
   const handleDelete = async (id: number) => {
     try {
       await deleteProduct(id);
@@ -70,21 +75,14 @@ const ProductList = () => {
     }
   };
 
-  // 打开新增
+  // 跳转到新增页面
   const handleAdd = () => {
-    setCurrentRecord(undefined);
-    setModalVisible(true);
+    navigate('../productedit');
   };
 
-  // 打开编辑
+  // 跳转到编辑页面（带ID）
   const handleEdit = (record: ProductItem) => {
-    setCurrentRecord(record);
-    setModalVisible(true);
-  };
-
-  // 保存成功刷新
-  const handleSuccess = () => {
-    getList();
+    navigate(`../productedit?id=${record.id}`);
   };
 
   useEffect(() => {
@@ -104,7 +102,7 @@ const ProductList = () => {
     },
     {
       title: '产品名称',
-      dataIndex: 'productName',
+      dataIndex: 'productname',
     },
     {
       title: '分类',
@@ -153,60 +151,48 @@ const ProductList = () => {
   ];
 
   return (
-  <Card className="card-box" title="产品管理">
-    <div className="page-container">
-      {/* 统一工具栏 */}
-      <div className="page-toolbar">
-        <Input
-          placeholder="产品名称"
-          value={productName}
-          onChange={(e) => setName(e.target.value)}
-          style={{ width: 200 }}
-        />
-        <Select
-          placeholder="分类筛选"
-          value={category}
-          onChange={setCategory}
-          options={categoryOptions}
-          allowClear
-          style={{ width: 200 }}
-        />
-        <Button type="primary" icon={<PlusOutlined />} onClick={handleAdd}>
-          新增产品
-        </Button>
+    <Card className="card-box" title="产品管理">
+      <div className="page-container">
+        <div className="page-toolbar">
+          <Input
+            placeholder="产品名称"
+            value={productName}
+            onChange={(e) => setName(e.target.value)}
+            style={{ width: 200 }}
+          />
+          <Select
+            placeholder="分类筛选"
+            value={category}
+            onChange={setCategory}
+            options={categoryOptions}
+            allowClear
+            style={{ width: 200 }}
+          />
+          <Button type="primary" icon={<PlusOutlined />} onClick={handleAdd}>
+            新增产品
+          </Button>
+        </div>
+        <div className="page-table">
+          <Table
+            rowKey="id"
+            loading={loading}
+            columns={columns}
+            dataSource={list}
+            locale={{ emptyText: <Empty description="暂无数据" /> }}
+            pagination={{
+              current: pageNum,
+              total,
+              pageSize: pageSize,
+              showSizeChanger: false,
+              showQuickJumper: true,
+              showTotal: (t) => `共 ${t} 条`,
+              onChange: (page) => setPageNum(page),
+            }}
+            bordered
+            size="middle"
+          />
+        </div>
       </div>
-
-
-      <div className="page-table">
-        <Table
-          rowKey="id"
-          loading={loading}
-          columns={columns}
-          dataSource={list}
-          locale={{ emptyText: <Empty description="暂无消息" /> }}
-          pagination={{
-            current: pageNum,
-            total,
-            pageSize: pageSize,
-            showSizeChanger: false,
-            showQuickJumper: true,
-            showTotal: (t) => `共 ${t} 条`,
-            onChange: (page) => setPageNum(page),
-          }}
-          bordered
-          size="middle"
-        />
-      </div>
-
-
-      {/* 弹窗表单 */}
-      <ProductFormModal
-        visible={modalVisible}
-        initialValues={currentRecord}
-        onCancel={() => setModalVisible(false)}
-        onSuccess={handleSuccess}
-      />
-    </div>
     </Card>
   );
 };

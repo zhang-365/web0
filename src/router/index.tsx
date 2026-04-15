@@ -15,6 +15,7 @@ import DeptList from '../pages/Z_DeptList';
 import RoleList from '../pages/Z_RoleList';
 import MenuList from '../pages/Z_MenuList';
 import ProductList from '../pages/Z_ProductList';
+import ProductEdit from '../pages/Z_ProductEdit';
 import RolePermission from '../pages/Z_RolePermission';
 import MessageList from '../pages/Z_MessageList';
 import AttachmentPage from '../pages/Z_AttachmentPage';
@@ -64,6 +65,7 @@ export const router = createBrowserRouter([
       { path: 'roles', element: <RoleList /> },
       { path: 'menus', element: <MenuList /> },
       { path: 'products', element: <ProductList /> },
+      { path: 'productedit', element: <ProductEdit /> },
       { path: 'role-permission', element: <RolePermission /> },
       { path: 'messageList', element: <MessageList /> },
       { path: 'attachment', element: <AttachmentPage /> },

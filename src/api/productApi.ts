@@ -20,3 +20,11 @@ export function updateProduct(id: number, data: any) {
 export function deleteProduct(id: number) {
   return request.delete(`/product/${id}`);
 }
+
+
+export function getProductById(id:number){
+  if(id==0)
+    return
+  else 
+      return request.get(`/productbyid/${id}`);
+}

@@ -138,3 +138,13 @@
 .yulan{
    color: '#ccc'
 }
+
+
+.ant-card-head-title .ant-space > .ant-space-item:nth-child(2) {
+  margin-left: auto !important;
+  display: flex;
+  justify-content: flex-end;
+}
+.ant-card-head-title .css-var-root {
+  width: 100% !important;
+}
